@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救救我们的小组作业 V3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Title Screen -->
+        <div id="title-screen" class="screen active">
+            <div class="title-bg"></div>
+            <div class="title-content">
+                <h1>救救我们的<br>小组作业</h1>
+                <p class="subtitle">—— 轻量级角色扮演模拟器 ——</p>
+                <p class="desc">你是北京大学《电子游戏创意与制作》小组作业的组长，<br>
+                    但不幸随机分配到了三个极品队友……<br>
+                    在 DDL 前，将奇葩队友的产出强行拼凑成一份能拿及格分的期末 Demo 吧！</p>
+                <button id="start-btn" class="btn-primary">开始游戏</button>
+                <p class="credit">招财进宝工作室 · 别笑笑你也过不了第二组</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen" style="position:relative">
+            <div class="bg-layer bg-normal"></div>
+            <div class="bg-layer bg-danger"></div>
+            <!-- HUD Top Bar -->
+            <div id="hud-top">
+                <div class="hud-left-group">
+                    <span id="day-display">Day [1] / 5</span>
+                    <span class="hud-divider">|</span>
+                    <span id="phase-display">情报获取</span>
+                </div>
+                <div class="hud-right-group">
+                    <div class="hud-right-top">
+                        <span>总体完成度：</span>
+                        <div id="completion-bar">
+                            <div id="completion-fill"></div>
+                            <div id="completion-pass-line"></div>
+                        </div>
+                        <span id="completion-pct">0%</span>
+                        <span id="pass-status">未达标</span>
+                    </div>
+                    <div id="module-bars">
+                        <div class="module-bar-item"><span>💻</span><div class="module-bar"><div id="code-fill" class="module-fill code"></div></div><span id="code-pct">0%</span></div>
+                        <div class="module-bar-item"><span>📝</span><div class="module-bar"><div id="writing-fill" class="module-fill writing"></div></div><span id="writing-pct">0%</span></div>
+                        <div class="module-bar-item"><span>🎨</span><div class="module-bar"><div id="art-fill" class="module-fill art"></div></div><span id="art-pct">0%</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Layout -->
+            <div id="main-layout">
+                <!-- Left Sidebar -->
+                <div id="sidebar">
+                    <!-- Stats Panel -->
+                    <div class="panel" id="stats-panel">
+                        <div class="panel-header" title="社交→骰子加成 | 实践→化合成功率 | 体育→AP数量">玩家属性</div>
+                        <div id="stats-bars"></div>
+                    </div>
+
+                    <!-- Familiarity Panel -->
+                    <div class="panel" id="fam-panel">
+                        <div class="panel-header" title="通过抓捕队友提升，影响掷骰DC和触发羁绊事件">熟悉度</div>
+                        <div id="fam-display"></div>
+                    </div>
+
+                    <!-- Sanity Panel -->
+                    <div class="panel" id="sanity-panel">
+                        <div class="panel-header" title="降到0则游戏结束！可通过夜跑/打游戏/事件恢复">理智值 (San)</div>
+                        <div id="sanity-bar-wrapper">
+                            <div id="sanity-bar">
+                                <div id="sanity-fill"></div>
+                            </div>
+                            <span id="sanity-text">70 / 100</span>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Panel -->
+                    <div class="panel" id="inv-panel">
+                        <div class="panel-header" title="收集的材料和道具，材料在缝合阶段使用，道具自动生效">背包</div>
+                        <div id="inventory-list"></div>
+                    </div>
+                </div>
+
+                <!-- Center Content -->
+                <div id="content"></div>
+            </div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen"></div>
+
+        <!-- Modal Overlay -->
+        <div id="modal-overlay" class="hidden">
+            <div id="modal">
+                <div id="modal-content"></div>
+            </div>
+        </div>
+
+        <!-- SAN Warning Overlay -->
+        <div id="san-warn-overlay" class="hidden">
+            <div id="san-warn-modal">
+                <div id="san-warn-content"></div>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification" class="hidden"></div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/capture.js"></script>
+    <script src="js/phases.js"></script>
+    <script src="js/endings.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
