@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>救救我们的小组作业 V3</title>
+    <title>救救我们的小组作业 V4 Mobile</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,6 +55,17 @@
             <div id="main-layout">
                 <!-- Left Sidebar -->
                 <div id="sidebar">
+                    <!-- Sanity Panel (first on mobile for collapsed view) -->
+                    <div class="panel" id="sanity-panel">
+                        <div class="panel-header" title="降到0则游戏结束！可通过夜跑/打游戏/事件恢复">理智值 (San)</div>
+                        <div id="sanity-bar-wrapper">
+                            <div id="sanity-bar">
+                                <div id="sanity-fill"></div>
+                            </div>
+                            <span id="sanity-text">70 / 100</span>
+                        </div>
+                    </div>
+
                     <!-- Stats Panel -->
                     <div class="panel" id="stats-panel">
                         <div class="panel-header" title="社交→骰子加成 | 实践→化合成功率 | 体育→AP数量">玩家属性</div>
@@ -67,23 +78,14 @@
                         <div id="fam-display"></div>
                     </div>
 
-                    <!-- Sanity Panel -->
-                    <div class="panel" id="sanity-panel">
-                        <div class="panel-header" title="降到0则游戏结束！可通过夜跑/打游戏/事件恢复">理智值 (San)</div>
-                        <div id="sanity-bar-wrapper">
-                            <div id="sanity-bar">
-                                <div id="sanity-fill"></div>
-                            </div>
-                            <span id="sanity-text">70 / 100</span>
-                        </div>
-                    </div>
-
                     <!-- Inventory Panel -->
                     <div class="panel" id="inv-panel">
                         <div class="panel-header" title="收集的材料和道具，材料在缝合阶段使用，道具自动生效">背包</div>
                         <div id="inventory-list"></div>
                     </div>
+
                 </div>
+                <button id="sidebar-toggle" class="sidebar-toggle-btn">展开面板 ▼</button>
 
                 <!-- Center Content -->
                 <div id="content"></div>

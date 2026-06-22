@@ -221,7 +221,8 @@ function startCapturePhase() {
     const tm = TEAMMATES[state.currentTeammate];
     const mc = state.currentLocation.mapConfig;
     const gridSize = mc.gridSize;
-    const cellSize = mc.cellSize;
+    const maxCanvasWidth = Math.min(mc.gridSize * mc.cellSize, window.innerWidth - 40, window.innerHeight * 0.4);
+    const cellSize = Math.floor(maxCanvasWidth / gridSize);
     const canvasSize = gridSize * cellSize;
 
     let html = `<div class="capture-phase phase-content">
@@ -238,7 +239,16 @@ function startCapturePhase() {
             <div class="legend-item">${mc.obsIcon} 障碍物</div>
             <div class="legend-item">☕🥤📄 道具</div>
         </div>
-        <div class="capture-controls">方向键 / WASD 移动 · 每步消耗 1 AP · 接触队友即抓捕成功</div>
+        <div class="capture-controls-desktop">方向键 / WASD 移动 · 每步消耗 1 AP · 接触队友即抓捕成功</div>
+        <div class="capture-controls-mobile" id="mobile-dpad">
+            <button class="dpad-btn dpad-up" data-dx="0" data-dy="-1">▲</button>
+            <div class="dpad-mid-row">
+                <button class="dpad-btn dpad-left" data-dx="-1" data-dy="0">◀</button>
+                <button class="dpad-btn dpad-center" disabled></button>
+                <button class="dpad-btn dpad-right" data-dx="1" data-dy="0">▶</button>
+            </div>
+            <button class="dpad-btn dpad-down" data-dx="0" data-dy="1">▼</button>
+        </div>
         <button class="shout-btn" id="shout-btn">📢 大声呼喊（3AP）</button>
     </div>`;
 
@@ -291,6 +301,14 @@ function startCapturePhase() {
 
     $('#shout-btn').addEventListener('click', () => {
         if (gridGame) gridGame.shout();
+    });
+
+    $$('.dpad-btn[data-dx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (gridGame && !gridGame.done) {
+                gridGame.movePlayer(+btn.dataset.dx, +btn.dataset.dy);
+            }
+        });
     });
 }
 

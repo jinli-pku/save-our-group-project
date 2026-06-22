@@ -96,4 +96,13 @@ async function showDayTransition() {
 
 window.addEventListener('DOMContentLoaded', () => {
     initTitle();
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            const expanded = sidebar.classList.toggle('sidebar-expanded');
+            sidebarToggle.textContent = expanded ? '收起面板 ▲' : '展开面板 ▼';
+        });
+    }
 });

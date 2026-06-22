@@ -239,12 +239,16 @@ function updateHUD() {
 // ==================== 新手教程 ====================
 
 function showTutorial(callback) {
+    const isMobile = window.innerWidth <= 600;
     const steps = [
         { target: '#sanity-panel', text: '这是你的理智值。低于 15 会直接结束游戏，连续两天低于 30 也会崩溃退出，注意保持！' },
         { target: '#hud-top .hud-right-group', text: '作业的总体完成度。代码、文案、美术三个模块均衡发展效果最好。' },
         { target: '#stats-panel', text: '社交影响掷骰加成，实践影响化合成功率，体育影响行动力（AP）。' },
         { target: '#fam-panel', text: '抓到队友会提升好感。好感越高，掷骰越容易，还能触发羁绊事件获得道具。' }
     ];
+    if (isMobile) {
+        steps.push({ target: '#sidebar-toggle', text: '点击这里可以随时展开或收起左侧面板，查看属性、好感和背包。' });
+    }
 
     let currentStep = 0;
 
@@ -261,11 +265,15 @@ function showTutorial(callback) {
     document.body.appendChild(ring);
     document.body.appendChild(tooltip);
 
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) sidebar.classList.add('sidebar-expanded');
+
     function showStep(idx) {
         const step = steps[idx];
         const target = document.querySelector(step.target);
         if (!target) { finish(); return; }
 
+        target.scrollIntoView({ block: 'nearest', behavior: 'instant' });
         const rect = target.getBoundingClientRect();
         const pad = 6;
         ring.style.left = (rect.left - pad) + 'px';
@@ -300,6 +308,9 @@ function showTutorial(callback) {
         ring.remove();
         tooltip.remove();
         blocker.remove();
+        if (sidebar) sidebar.classList.remove('sidebar-expanded');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        if (toggleBtn) toggleBtn.textContent = '展开面板 ▼';
         if (callback) callback();
     }
 
