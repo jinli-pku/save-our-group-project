@@ -115,12 +115,6 @@ const RANDOM_EVENTS = [
         effects: [{ stat: 'sanity', value: 1 }, { stat: 'social', value: 1 }]
     },
     {
-        name: '树洞这一块儿',
-        desc: '压抑了一天的你打开树洞，在一条popi洞中留下你的足迹，与洞u的交流让你身心舒畅无比。',
-        type: 'buff',
-        effects: [{ stat: 'social', value: 1 }]
-    },
-    {
         name: '难忘的主题夜奔',
         desc: '五四操场传来一阵阵劲爆的小曲儿，你奔向人潮，青春的气息萦绕在耳畔。',
         type: 'buff',

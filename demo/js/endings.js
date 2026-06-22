@@ -210,7 +210,7 @@ function showEnding(endingKey) {
         </div>
         <button class="btn-primary" id="restart-btn">再来一局</button>
         <p style="margin-top:20px;font-size:12px;color:var(--text-dim)">
-            流派：${arch.name} ｜ 材料收集：${state.totalMaterialsCollected}份 ｜ Demo版本 v2.0
+            流派：${arch.name} ｜ 材料收集：${state.totalMaterialsCollected}份 ｜ Demo版本 v4.0
         </p>
     </div>`;
 
